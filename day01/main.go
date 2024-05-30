@@ -10,8 +10,9 @@ import (
 
 var input string
 
+// parse input line by line
 func puzzle1(input string) int {
-	results := parseInputs(input)
+	results := parseInputs(input, true)
 	total := 0
 	for _, result := range results {
 		total += result
@@ -20,7 +21,12 @@ func puzzle1(input string) int {
 
 }
 
-func parseInputs(input string) (results []int) {
+// sum the first and last digit from each line.
+func parseInputs(input string, matchNameFlag bool) (results []int) {
+	names := []string{
+		"one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten",
+	}
+
 	for _, line := range strings.Split(input, "\n") {
 		digits := make([]int, 0)
 		for i := range line {
@@ -31,6 +37,14 @@ func parseInputs(input string) (results []int) {
 				}
 				digits = append(digits, digit)
 				continue
+			}
+			if matchNameFlag {
+				for n, name := range names {
+					if strings.HasPrefix(line[i:], name) {
+						digits = append(digits, n+1)
+						break
+					}
+				}
 			}
 		}
 		if len(digits) == 0 {
