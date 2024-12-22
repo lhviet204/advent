@@ -26,3 +26,13 @@ go.work.sum
 
 # .vscode 
 .vscode
+
+# env
+.env
+**/inputs/
+
+.vscode
+.DS_Store
+._.DS_Store
+**/.DS_Store
+**/._.DS_Store.%
