@@ -1,4 +1,4 @@
-package main
+package 2023
 
 import (
 	"fmt"

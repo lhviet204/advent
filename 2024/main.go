@@ -51,6 +51,6 @@ func main() {
 	day := 5
 	input := getInput(day)
 	// fmt.Println(len(input))
-	day5_1(input)
-	// day5_2(input)
+	// day5_1(input)
+	day5_2(input)
 }
