@@ -7,8 +7,8 @@ import (
 	"unicode"
 )
 
-func FetchSliceOfIntsInString(line string) []int {
-	nums := []int{}
+func FetchSliceOfIntsInString(line string) []int64 {
+	nums := []int64{}
 	var build strings.Builder
 	isNegative := false
 	for _, char := range line {
@@ -28,7 +28,7 @@ func FetchSliceOfIntsInString(line string) []int {
 			if isNegative {
 				localNum *= -1
 			}
-			nums = append(nums, int(localNum))
+			nums = append(nums, int64(localNum))
 			build.Reset()
 			isNegative = false
 		}
@@ -41,7 +41,7 @@ func FetchSliceOfIntsInString(line string) []int {
 		if isNegative {
 			localNum *= -1
 		}
-		nums = append(nums, int(localNum))
+		nums = append(nums, int64(localNum))
 		build.Reset()
 	}
 	return nums
@@ -49,7 +49,7 @@ func FetchSliceOfIntsInString(line string) []int {
 
 func day7_2plus(input string) {
 	lines := strings.Split(strings.TrimSpace(input), "\n")
-	output := 0
+	output := int64(0)
 	for _, line := range lines {
 		// parts := strings.Split(line, ":")
 		// target, _ := strconv.Atoi(parts[0])
@@ -66,15 +66,15 @@ func day7_2plus(input string) {
 	}
 	fmt.Println("Output of day 7 task 2", output)
 }
-func calculate(a, b int, operator byte) int {
-	result := 0
+func calculate(a, b int64, operator byte) int64 {
+	result := int64(0)
 	switch operator {
 	case '+':
 		result = a + b
 	case '*':
 		result = a * b
 	case '|':
-		mul, q := 10, 10 // cont to divide 10
+		mul, q := int64(10), int64(10) // cont to divide 10
 		for q != 0 {
 			q = b / mul
 			if q > 0 {
@@ -86,7 +86,7 @@ func calculate(a, b int, operator byte) int {
 	return result
 }
 
-func isMatch(target int, currentResult int, numbers []int) bool {
+func isMatch(target int64, currentResult int64, numbers []int64) bool {
 	if len(numbers) == 0 {
 		return currentResult == target
 	}
