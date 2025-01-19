@@ -49,12 +49,64 @@ func day7_1(input string) {
 	fmt.Println("Output of day 7 task 1 is", output)
 }
 
+// func day7_2(input string) {
+// 	lines := strings.Split(strings.TrimSpace(input), "\n")
+// 	output := 0
+
+// 	var evaluate func(target int, numbers []int, index int, currentResult int) bool
+
+// 	evaluate = func(target int, numbers []int, index int, currentResult int) bool {
+// 		if index >= len(numbers) {
+// 			return currentResult == target
+// 		}
+
+// 		currentNumber := numbers[index]
+
+// 		newResult := currentResult + currentNumber
+// 		if newResult <= target {
+// 			if evaluate(target, numbers, index+1, newResult) {
+// 				return true
+// 			}
+// 		}
+
+// 		newResult = currentResult * currentNumber
+// 		if newResult <= target {
+// 			if evaluate(target, numbers, index+1, newResult) {
+// 				return true
+// 			}
+// 		}
+
+// 		concatenated, _ := strconv.Atoi(fmt.Sprintf("%d%d", currentResult, currentNumber))
+// 		if concatenated <= target {
+// 			correct := evaluate(target, numbers, index+1, concatenated)
+// 			fmt.Println(target, numbers, concatenated, correct, target == concatenated)
+// 			return correct
+// 		}
+
+// 		return false
+// 	}
+
+// 	for _, line := range lines {
+// 		parts := strings.Split(line, ":")
+// 		target, _ := strconv.Atoi(parts[0])
+// 		numStrings := strings.Fields(parts[1])
+// 		numbers := make([]int, len(numStrings))
+// 		for i, numString := range numStrings {
+// 			numbers[i], _ = strconv.Atoi(numString)
+// 		}
+
+// 		if evaluate(target, numbers, 0, 0) {
+// 			output += target
+// 		}
+// 	}
+// 	fmt.Println("Output of day 7 task 2 is", output)
+// }
+
 func day7_2(input string) {
 	lines := strings.Split(strings.TrimSpace(input), "\n")
 	output := 0
 
 	var evaluate func(target int, numbers []int, index int, currentResult int) bool
-
 	evaluate = func(target int, numbers []int, index int, currentResult int) bool {
 		if index >= len(numbers) {
 			return currentResult == target
@@ -62,14 +114,14 @@ func day7_2(input string) {
 
 		currentNumber := numbers[index]
 
-		newResult := currentNumber + currentResult
+		newResult := currentResult + currentNumber
 		if newResult <= target {
 			if evaluate(target, numbers, index+1, newResult) {
 				return true
 			}
 		}
 
-		newResult = currentNumber * currentResult
+		newResult = currentResult * currentNumber
 		if newResult <= target {
 			if evaluate(target, numbers, index+1, newResult) {
 				return true
@@ -88,9 +140,10 @@ func day7_2(input string) {
 	for _, line := range lines {
 		parts := strings.Split(line, ":")
 		target, _ := strconv.Atoi(parts[0])
-		numStrings := strings.Fields(parts[1])
-		numbers := make([]int, len(numStrings))
-		for i, numString := range numStrings {
+		numberStrings := strings.Fields(parts[1])
+		numbers := make([]int, len(numberStrings))
+
+		for i, numString := range numberStrings {
 			numbers[i], _ = strconv.Atoi(numString)
 		}
 
@@ -98,5 +151,6 @@ func day7_2(input string) {
 			output += target
 		}
 	}
-	fmt.Println("Output of day 7 task 2 is", output)
+
+	fmt.Println("Output Day 7 Part 2", output)
 }
