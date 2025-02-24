@@ -50,8 +50,8 @@ func main() {
 
 	day := 9
 	input := getInput(day)
-	// input := "2333133121414131402" examples
+	// input := "2333133121414131402" //baseCase
 	fmt.Println(len(input))
-	day9_1(input)
-	// day8_2(input)
+	// day9_1(input)
+	day9_2(input)
 }
